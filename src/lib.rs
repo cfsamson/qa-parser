@@ -211,7 +211,7 @@
 //! 
 //! ```text
 //! line: 5, pos: 22
-//!                 6020.6100 => Småanskaffelser
+//!                 6020.6100 => Office Supplies
 //! ---------------------^
 //! 
 //! ERROR: Invalid range syntax
