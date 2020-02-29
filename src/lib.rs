@@ -66,7 +66,7 @@
 //!   Office supplies   xxxx
 //!   Consumables       xxxx
 //!   ----------------------
-//!   Sum misc. costs        xxxx
+//! Sum misc. costs          xxxx
 //! -----------------------------
 //! Sum other costs          xxxx
 //! =============================
