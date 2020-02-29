@@ -400,7 +400,6 @@ impl Parser {
                 },
 
                 ')' | '=' => {
-                    // we need to move the cursor for correct error reporting
                     return Ok(None)
                 },
 
@@ -418,8 +417,6 @@ impl Parser {
 
         self.skip_ws_and_nl();
         while let Some(c) = self.next() {
-            //println!("{:?}", self);
-            // println!("{:?}", c);
             match c {
                 '(' => break,
                 _ => name.push(c),
