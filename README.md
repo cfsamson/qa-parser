@@ -26,10 +26,10 @@ Sum sales      xxxx
 ===================
 ```
 
-The header is optional:
+The "title" is optional:
 
 ```
-Sales (
+(
     3010..3010 => Webshop
     3010..4000 => Other sales
 ) => Sum sales
