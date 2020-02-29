@@ -546,6 +546,7 @@ impl Parser {
         if rangeint.is_numeric() {
             from.push(self.next().unwrap());
         } else {
+            // TODO: Should this be an error?
             return Ok(None);
         }
 
