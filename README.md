@@ -186,6 +186,38 @@ looking like this:
 ]
 ```
 
+## Error reporting
+
+The error reporting tries to mimick that of Rusts:
+
+```rust
+let test = "
+(
+    6000..6010 => Leasing
+    (
+        6020.6100 => Office Supplies
+        6100..6200 => Consumables
+    ) => Sum miscellaneous costs
+) == Sum other costs
+";
+
+let mut parser = Parser::new(test);
+match parser.parse() {
+    Ok(_) => (),
+    Err(e) => println!("{}", e),
+}
+```
+
+Gives an error message looking like this:
+
+```
+line: 5, pos: 22
+                6020.6100 => Småanskaffelser
+---------------------^
+
+ERROR: Invalid range syntax
+```
+
 ## Development status
 
 Note that while this correctly parses the example above it's not extensively tested for all
