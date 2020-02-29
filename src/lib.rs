@@ -39,9 +39,9 @@
 //! ```text
 //! Webshop        xxxx
 //! Other sales    xxxx
-//! ------------------------
-//! Sum sales          xxxx
-//! ========================
+//! -------------------
+//! Sum sales      xxxx
+//! ===================
 //! ```
 //! 
 //! The groups can be nested to as many levels as you want (in the highly unlikely scnario that you
