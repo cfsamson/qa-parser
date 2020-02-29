@@ -1,7 +1,7 @@
 
 # QuickAccount Parser - A parser for a financial reporting DSL
 
-Library for parsing a small DLS for accounting reporting. The specific needs for such a DSL is
+Library for parsing a small DLS for financial reporting. The specific needs for such a DSL is
 probably country specific but this DLS is based on account numbers beeing in a specific
 range for each major "account group".
 
@@ -21,9 +21,9 @@ This will typically be represented in a report as:
 SALES
 Webshop        xxxx
 Other sales    xxxx
-------------------------
-Sum sales          xxxx
-========================
+-------------------
+Sum sales      xxxx
+===================
 ```
 
 The header is optional:
@@ -108,7 +108,7 @@ looking like this:
 ```rust
 [
     Span {
-        name: Some("Sales "),
+        name: Some("Sales"),
         ranges: [
             Range {
                 title: "Webshop",
