@@ -7,7 +7,7 @@
 //! To be able to let users configure reports dynamically we let them specify ranges of accounts
 //! and group them togheher and specify a label for both a header (optional) and a group.
 //! 
-//! ```
+//! ```ignore
 //! Sales (
 //!     3010..3010 => Webshop
 //!     3010..4000 => Other sales
@@ -16,7 +16,7 @@
 //! 
 //! This will typically be represented in a report as:
 //! 
-//! ```
+//! ```text
 //! SALES
 //! Webshop        xxxx
 //! Other sales    xxxx
@@ -27,7 +27,7 @@
 //! 
 //! The "title" is optional:
 //! 
-//! ```
+//! ```ignore
 //! (
 //!     3010..3010 => Webshop
 //!     3010..4000 => Other sales
@@ -36,7 +36,7 @@
 //! 
 //! Would (typically) be represented as:
 //! 
-//! ```
+//! ```text
 //! Webshop        xxxx
 //! Other sales    xxxx
 //! ------------------------
@@ -48,7 +48,7 @@
 //! create nesting above a few houndred levels this might cause a stack overflow since we parse
 //! these recursively):
 //! 
-//! ```
+//! ```ignore
 //! Other costs (
 //!     6000..6010 => Leasing
 //!     (
@@ -60,7 +60,7 @@
 //! 
 //! Would typically be:
 //! 
-//! ```
+//! ```text
 //! OTHER COSTS
 //! Leasing                  xxxx
 //!   Office supplies   xxxx
@@ -74,7 +74,7 @@
 //! 
 //! The full DSL looks like this
 //! 
-//! ```
+//! ```ignore
 //! Sales (
 //!     3010..3010 => Webshop
 //!     3010..4000 => Other sales
@@ -104,7 +104,7 @@
 //! it's easier to just show it here. The eaxmple above will get parsed into a syntax tree
 //! looking like this:
 //! 
-//! ```rust
+//! ```rust, ignore
 //! [
 //!     Span {
 //!         name: Some("Sales"),
@@ -189,7 +189,7 @@
 //! 
 //! The error reporting tries to mimick that of Rusts:
 //! 
-//! ```rust
+//! ```rust, ignore
 //! let test = "
 //! (
 //!     6000..6010 => Leasing
@@ -209,7 +209,7 @@
 //! 
 //! Gives an error message looking like this:
 //! 
-//! ```
+//! ```text
 //! line: 5, pos: 22
 //!                 6020.6100 => Småanskaffelser
 //! ---------------------^
@@ -292,7 +292,7 @@ impl Parser {
         
 
         // ) => *char
-        let mut sum_name = self.block_end()?;
+        let sum_name = self.block_end()?;
 
         let sumtype = if sub {
             SumType::SubTotal(sum_name)
@@ -330,7 +330,7 @@ impl Parser {
                                     break;
                                 }
 
-                                Some(next_ch) => return Err("Expected >"),
+                                Some(_) => return Err("Expected >"),
                                 _ => return Err("Expected => after )"),
                             },
                             _ => return Ok(None),
@@ -389,7 +389,6 @@ impl Parser {
     /// The next is an Option which indicates if there is a "block start" or not
     /// The last option is to indicate if there is a title/header for the block or not
     fn block_start(&mut self) -> Result<Option<Option<String>>, AppErr> {
-        let mut skip_ws = true;
         let mut name = String::new();
         let mut is_block_start = false;
         let mut lookahed = 1;
@@ -495,7 +494,7 @@ impl Parser {
                         let _ = self.next();
                         break;
                     }
-                    Some(c) => {
+                    Some(_) => {
                         return Err("Invalid syntax after =");
                     },
                     None => return Err("Unexpected EOF"),
